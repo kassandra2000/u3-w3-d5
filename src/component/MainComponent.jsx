@@ -1,37 +1,27 @@
-import { Card, Col, Nav, Row } from "react-bootstrap";
+import { Col, Nav, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import Card from "./Card";
 const Main = () => {
-  const singleSongState=useSelector((state) => {state.song});
-    return (
-      <Col className="col-12 col-md-9 offset-md-3 mainPage">
-        <Row>
-          <Col className="col-9 col-lg-11 mainLinks d-none d-md-flex">
-            <Nav.Link href="#">TRENDING</Nav.Link>
-            <Nav.Link href="#">PODCAST</Nav.Link>
-            <Nav.Link href="#">MOODS AND GENRES</Nav.Link>
-            <Nav.Link href="#">NEW RELEASES</Nav.Link>
-            <Nav.Link href="#">DISCOVER</Nav.Link>
-          </Col>
-        </Row>
-
-        <Card singlesong={singleSongState&&singleSongState.eminemSong} />
-        <Card singlesong={singleSongState&&singleSongState.katyPerrySong} />
-        <Card singlesong={singleSongState&&singleSongState.queenSong} />
-
-        {/* <Row>
-        <Col className="col-10">
-          <div id="hiphop">
-            <h2>#HipHop</h2>
-            <Row
-              className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-              id="hipHopSection"
-            ></Row>
-          </div>
+  const eminemSongs = useSelector((state) => state.song.eminemSong);
+  const katyPerrySongs = useSelector((state) => state.song.katyPerrySong);
+  const queenSongs = useSelector((state) => state.song.queenSong);
+  return (
+    <Col className="col-12 col-md-9 offset-md-3 mainPage">
+      <Row>
+        <Col className="col-9 col-lg-11 mainLinks d-none d-md-flex">
+          <Nav.Link href="#">TRENDING</Nav.Link>
+          <Nav.Link href="#">PODCAST</Nav.Link>
+          <Nav.Link href="#">MOODS AND GENRES</Nav.Link>
+          <Nav.Link href="#">NEW RELEASES</Nav.Link>
+          <Nav.Link href="#">DISCOVER</Nav.Link>
         </Col>
-      </Row> */}
-      </Col>
-    );
-  
+      </Row>
+
+      <Card title={"Rock Classics"} singlesong={eminemSongs} />
+      <Card title={"Pop Culture"} singlesong={katyPerrySongs} />
+      <Card title={"HipHop"} singlesong={queenSongs} />
+    </Col>
+  );
 };
 
 export default Main;

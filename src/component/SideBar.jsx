@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   Col,
@@ -10,8 +11,14 @@ import {
 import { useDispatch } from "react-redux";
 
 const SideBar = () => {
+  const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  console.log(input)
   return (
     <Col className=" col-2">
       <Navbar
@@ -57,6 +64,7 @@ const SideBar = () => {
                 <li>
                   <InputGroup className=" mt-3 ">
                     <FormControl
+                      onChange={handleChange}
                       id="form"
                       type="text"
                       placeholder="Search"
@@ -67,7 +75,7 @@ const SideBar = () => {
                         onClick={() => {
                           dispatch({
                             type: "ADD_SONG",
-                            payload: "song",
+                            payload: input,
                           });
                         }}
                         variant=" "

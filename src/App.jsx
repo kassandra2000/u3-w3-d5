@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 function App() {
   const dispatch = useDispatch();
 
-  const fillMusicSection = async (artistName, querySelector) => {
+  const fillMusicSection = async (artistName, t, typeArtist) => {
     try {
       let response = await fetch(
         "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
@@ -18,22 +18,10 @@ function App() {
       if (response.ok) {
         const data = await response.json();
 
-        artistName === "queen" &&
-          dispatch({
-            type: "ADD_QEEN_SONG",
-            payload: data.data.slice(0, 4),
-          });
-
-        artistName === "katyperry" &&
-          dispatch({
-            type: "ADD_KATY_PERRY_SONG",
-            payload: data.data.slice(0, 4),
-          });
-        artistName === "eminem" &&
-          dispatch({
-            type: "ADD_EMINEM_SONG",
-            payload: data.data.slice(0, 4),
-          });
+        dispatch({
+          type: `${typeArtist}`,
+          payload: data.data.slice(0, 4),
+        });
       } else {
         throw new Error("Error in fetching songs");
       }
@@ -42,9 +30,9 @@ function App() {
     }
   };
 
-  fillMusicSection("queen", "#rockSection");
-  fillMusicSection("katyperry", "#popSection");
-  fillMusicSection("eminem", "#hipHopSection");
+  fillMusicSection("queen", "#rockSection", "ADD_QEEN_SONG");
+  fillMusicSection("katyperry", "#popSection", "ADD_KATY_PERRY_SONG");
+  fillMusicSection("eminem", "#hipHopSection", "ADD_EMINEM_SONG");
 
   return (
     <>
