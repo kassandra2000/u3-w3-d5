@@ -4,21 +4,23 @@ import "./App.scss";
 import SideBar from "./component/SideBar";
 import Main from "./component/MainComponent";
 import Player from "./component/Player";
-
+import { useDispatch } from "react-redux";
 
 function App() {
-  const albumCard = function (singleSong) {
-    return `
-        <div className="col text-center">
-            <img className="img-fluid" src=${
-              singleSong.album.cover_medium
-            } alt="track" />
-          <p>
-              Track: "${`${singleSong.title}`}"<br>
-              Artist: ${singleSong.artist.name}
-          </p>
-        </div>`;
-  };
+  const dispatch = useDispatch();
+
+  // const albumCard = function (singleSong) {
+  //   return `
+  //       <div className="col text-center">
+  //           <img className="img-fluid" src=${
+  //             singleSong.album.cover_medium
+  //           } alt="track" />
+  //         <p>
+  //             Track: "${`${singleSong.title}`}"<br>
+  //             Artist: ${singleSong.artist.name}
+  //         </p>
+  //       </div>`;
+  // };
 
   const fillMusicSection = async (artistName, querySelector) => {
     try {
@@ -27,11 +29,24 @@ function App() {
           artistName
       );
       if (response.ok) {
-        let { data } = await response.json();
-        let musicSection = document.querySelector(querySelector);
-        for (let i = 0; i < 4; i++) {
-          musicSection.innerHTML += albumCard(data[i]);
-        }
+        const data = await response.json();
+
+        artistName === "queen" &&
+          dispatch({
+            type: "ADD_QEEN_SONG",
+            payload: data.data.slice(0, 4),
+          });
+
+        artistName === "katyperry" &&
+          dispatch({
+            type: "ADD_KATY_PERRY_SONG",
+            payload: data.data.slice(0, 4),
+          });
+        artistName === "eminem" &&
+          dispatch({
+            type: "ADD_EMINEM_SONG",
+            payload: data.data.slice(0, 4),
+          });
       } else {
         throw new Error("Error in fetching songs");
       }
@@ -40,10 +55,9 @@ function App() {
     }
   };
 
-    fillMusicSection("queen", "#rockSection");
-    fillMusicSection("katyperry", "#popSection");
-    fillMusicSection("eminem", "#hipHopSection");
- 
+  fillMusicSection("queen", "#rockSection");
+  fillMusicSection("katyperry", "#popSection");
+  fillMusicSection("eminem", "#hipHopSection");
 
   return (
     <>

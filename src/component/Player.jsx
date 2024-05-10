@@ -24,9 +24,8 @@ const Player = () => {
                   <img src="assets/playerbuttons/repeat.png" alt="repeat" />
                 </Nav.Link>
               </div>
-              <ProgressBar className=" mt-3">
-                <div role="progressbar"></div>
-              </ProgressBar>
+              <ProgressBar className=" mt-3"/>
+             
             </Col>
           </Row>
         </Col>

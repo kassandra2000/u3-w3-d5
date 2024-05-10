@@ -7,8 +7,11 @@ import {
   Nav,
   Navbar,
 } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
 const SideBar = () => {
+  const dispatch = useDispatch();
+
   return (
     <Col className=" col-2">
       <Navbar
@@ -30,9 +33,8 @@ const SideBar = () => {
             aria-controls="navbarNavAltMarkup"
             aria-expanded="false"
             aria-label="Toggle navigation"
-          >
-            <Navbar.Toggle className="navbar-toggler-icon"></Navbar.Toggle>
-          </Navbar.Toggle>
+          />
+
           <Navbar.Collapse id="navbarNavAltMarkup">
             <Nav>
               <ul>
@@ -62,6 +64,12 @@ const SideBar = () => {
                     />
                     <InputGroup className="input-group-append w-25">
                       <Button
+                        onClick={() => {
+                          dispatch({
+                            type: "ADD_SONG",
+                            payload: "song",
+                          });
+                        }}
                         variant=" "
                         className=" btn-outline-secondary btn-sm h-100"
                       >
@@ -81,8 +89,14 @@ const SideBar = () => {
           <Button className="login-btn" type="button">
             Login
           </Button>
-          
-          <Nav.Link className="d-inline-block" href="#">Cookie Policy </Nav.Link>|<Nav.Link className="d-inline" href="#"> Privacy</Nav.Link>
+          <Nav.Link className="d-inline-block" href="#">
+            Cookie Policy{" "}
+          </Nav.Link>
+          |
+          <Nav.Link className="d-inline" href="#">
+            {" "}
+            Privacy
+          </Nav.Link>
         </div>
       </Navbar>
     </Col>
