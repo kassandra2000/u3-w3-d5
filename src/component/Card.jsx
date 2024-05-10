@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap"
 const Card=(props)=>{
 
     console.log(props)
+    console.log("ciao")
     return(
         <Row>
         <Col className="col-10">

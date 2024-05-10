@@ -1,7 +1,7 @@
 import { Card, Col, Nav, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 const Main = () => {
-  useSelector((state) => {
+  const singleSongState=useSelector((state) => {state.song});
     return (
       <Col className="col-12 col-md-9 offset-md-3 mainPage">
         <Row>
@@ -14,9 +14,9 @@ const Main = () => {
           </Col>
         </Row>
 
-        <Card singleSong={state.song.eminemSong} />
-        <Card singleSong={state.song.katyPerrySong} />
-        <Card singleSong={state.song.queenSong} />
+        <Card singlesong={singleSongState&&singleSongState.eminemSong} />
+        <Card singlesong={singleSongState&&singleSongState.katyPerrySong} />
+        <Card singlesong={singleSongState&&singleSongState.queenSong} />
 
         {/* <Row>
         <Col className="col-10">
@@ -31,7 +31,7 @@ const Main = () => {
       </Row> */}
       </Col>
     );
-  });
+  
 };
 
 export default Main;
