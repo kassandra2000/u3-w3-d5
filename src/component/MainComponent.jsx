@@ -5,6 +5,7 @@ const Main = () => {
   const eminemSongs = useSelector((state) => state.song.eminemSong);
   const katyPerrySongs = useSelector((state) => state.song.katyPerrySong);
   const queenSongs = useSelector((state) => state.song.queenSong);
+  const inputSongs = useSelector((state) => state.song.inputSong);
   return (
     <Col className="col-12 col-md-9 offset-md-3 mainPage">
       <Row>
@@ -17,9 +18,10 @@ const Main = () => {
         </Col>
       </Row>
 
-      <Card title={"Rock Classics"} singlesong={eminemSongs} />
+      <Card title={"Cerca la tua canzone!"} singlesong={inputSongs} />
       <Card title={"Pop Culture"} singlesong={katyPerrySongs} />
-      <Card title={"HipHop"} singlesong={queenSongs} />
+      <Card title={"Rock Classics"} singlesong={queenSongs} />
+      <Card title={"HipHop"} singlesong={eminemSongs} />
     </Col>
   );
 };

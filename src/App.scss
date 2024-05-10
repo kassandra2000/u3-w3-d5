@@ -52,7 +52,6 @@ ul {
 .nav-btn a {
   color: rgb(145, 145, 145);
   text-decoration: none;
-
 }
 
 .nav-link i {
@@ -182,4 +181,41 @@ ul {
   display: block;
 }
 
+#row-play {
+  position: relative;
+  #img-play {
+    width: 50px;
+    position: absolute;
+    left: 17%;
+    bottom: 30px;
+  }
+  span {
+    position: absolute;
+    color: white;
+    bottom: 4px;
+    left: 16%;
+    font-size: 0.5em;
+  }
+  .bi-bookmark-heart-fill::before {
+    content: "\f19a";
+    font-size: 1.5em;
+    color: #ff4949;
+    position: relative;
+    left: 10%;
+    bottom: -90%;
+  }
+  #row-play .bi-bookmark-heart-fill::before {
+    color: white;
+  }
+}
+.bi-bookmark-heart-fill::before {
+  cursor: pointer;
+  padding: 3px;
+  font-size: 1.2em;
+}
 
+#p {
+  margin: 0;
+  padding: 0;
+  height: 3px;
+}

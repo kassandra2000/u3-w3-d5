@@ -4,13 +4,14 @@ import "./App.scss";
 import SideBar from "./component/SideBar";
 import Main from "./component/MainComponent";
 import Player from "./component/Player";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+  const inputContent = useSelector((state) => state.song.content);
 
-  const fillMusicSection = async (artistName, t, typeArtist) => {
-    try {
+  const fillMusicSection = async (artistName = "queen", t, typeArtist) => {
+     try {
       let response = await fetch(
         "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
           artistName
@@ -33,6 +34,7 @@ function App() {
   fillMusicSection("queen", "#rockSection", "ADD_QEEN_SONG");
   fillMusicSection("katyperry", "#popSection", "ADD_KATY_PERRY_SONG");
   fillMusicSection("eminem", "#hipHopSection", "ADD_EMINEM_SONG");
+  inputContent&&fillMusicSection(inputContent, "#hipHopSection", "ADD_INPUT_SONG");
 
   return (
     <>
